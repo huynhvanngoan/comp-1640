@@ -31,4 +31,31 @@ text-align: left;
 
 .ant-menu-light .ant-menu-item-selected{
 color: white;
+<<<<<<< HEAD
+=======
+}
+/* Tablet */
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ant-layout-sider {
+    width: 80px !important;
+    min-width: 80px !important;
+    max-width: 80px !important;
+  }
+  .ant-menu-title-content {
+    display: none;
+  }
+}
+
+/* Smartphone */
+@media (max-width: 767px) {
+  .ant-layout-sider {
+    width: 60px !important;
+    min-width: 60px !important;
+    max-width: 60px !important;
+  }
+  .ant-menu-title-content {
+    display: none;
+  }
+>>>>>>> 5bc92b02cd422ac0a00abceaae82206f5b3b7b07
 }
