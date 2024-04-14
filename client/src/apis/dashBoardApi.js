@@ -1,5 +1,6 @@
 
 /* eslint-disable no-dupe-keys */
+
 import axiosClient from "./axiosClient";
 
 const dashBoardApi = {
@@ -23,6 +24,15 @@ const dashBoardApi = {
   },
   async getTotalArticle() {
     const url = `article/static/total`;
+    try {
+      const response = await axiosClient.get(url);
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }, 
+  async getTotalArticlesWithAcademicYear() {
+    const url = `/static/totalyacademic`;
     try {
       const response = await axiosClient.get(url);
       return response;

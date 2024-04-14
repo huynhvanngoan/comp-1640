@@ -382,12 +382,12 @@ exports.getTotalArticlesByFaculty = async (req, res) => {
 
     // Lặp qua từng khoa
     for (const faculty of faculties) {
-      const users = await User.find({ facultyId: faculty._id }); // Tìm tất cả người dùng thuộc khoa hiện tại
-      const userIds = users.map((user) => user._id); // Lấy danh sách id người dùng
+      // const users = await User.find({ facultyId: faculty._id }); // Tìm tất cả người dùng thuộc khoa hiện tại
+      // const userIds = users.map((user) => user._id); // Lấy danh sách id người dùng
 
       // Tìm tất cả bài viết của các người dùng thuộc khoa hiện tại
-      const articles = await Article.find({ userId: { $in: userIds } });
-
+      const articles = await Article.find();
+ 
       // Đếm số lượng bài viết
       const totalArticles = articles.length;
 
@@ -402,40 +402,102 @@ exports.getTotalArticlesByFaculty = async (req, res) => {
   }
 };
 
-exports.getTotalArticlesByAcademicYear = async (req, res) => {
-  try {
 
-    const { facultyId } = req.params;
-    const users = await User.find({ facultyId });
+exports.getTotalArticlesWithAcademicYear = async (req, res) => {
+    try {
+        const articles = await Article.find();
+        const articlesByAcademicYear = [];
 
-    const userIds = users.map((user) => user._id);
+        for (const article of articles) {
+            const academicYearId = article.academicyearId.toString();
+            const academicYearName = await getAcademicYearNameById(
+                academicYearId
+            );
+            const index = articlesByAcademicYear.findIndex(
+                (item) => item.name === academicYearName
+            );
+            if (index === -1) {
+                articlesByAcademicYear.push({
+                    name: academicYearName,
+                    count: 1,
+                });
+            } else {
+                articlesByAcademicYear[index].count++;
+            }
+        }
+        res.status(200).json({ data: articlesByAcademicYear });
+    } catch (error) {
+        console.error(
+            "Error getting total number of articles by academic year:",
+            error
+        );
+        res.status(500).json({ message: "Internal server error" });
+// =======
+// exports.getTotalArticlesByAcademicYear = async (req, res) => {
+//   try {
 
-    const articles = await Article.find({ userId: { $in: userIds } });
+//     const { facultyId } = req.params;
+//     const users = await User.find({ facultyId });
 
-    const articlesByAcademicYear = [];
+//     const userIds = users.map((user) => user._id);
 
-    for (const article of articles) {
-      const academicYearId = article.academicyearId.toString();
-      const academicYearName = await getAcademicYearNameById(academicYearId);
-      const index = articlesByAcademicYear.findIndex(
-        (item) => item.name === academicYearName
-      );
-      if (index === -1) {
+//     const articles = await Article.find({ userId: { $in: userIds } });
 
-        articlesByAcademicYear.push({ name: academicYearName, count: 1 });
-      } else {
-        articlesByAcademicYear[index].count++;
-      }
+//     const articlesByAcademicYear = [];
+
+//     for (const article of articles) {
+//       const academicYearId = article.academicyearId.toString();
+//       const academicYearName = await getAcademicYearNameById(academicYearId);
+//       const index = articlesByAcademicYear.findIndex(
+//         (item) => item.name === academicYearName
+//       );
+//       if (index === -1) {
+
+//         articlesByAcademicYear.push({ name: academicYearName, count: 1 });
+//       } else {
+//         articlesByAcademicYear[index].count++;
+//       }
+// >>>>>>> main
     }
+};
 
-    res.status(200).json({ data: articlesByAcademicYear });
-  } catch (error) {
-    console.error(
-      "Error getting total number of articles by academic year:",
-      error
-    );
-    res.status(500).json({ message: "Internal server error" });
-  }
+exports.getTotalArticlesByAcademicYear = async (req, res) => {
+    try {
+        const { facultyId } = req.params;
+
+        const users = await User.find({ facultyId });
+
+        const userIds = users.map((user) => user._id);
+
+        const articles = await Article.find({ userId: { $in: userIds } });
+
+        const articlesByAcademicYear = [];
+
+        for (const article of articles) {
+            const academicYearId = article.academicyearId.toString();
+            const academicYearName = await getAcademicYearNameById(
+                academicYearId
+            );
+            const index = articlesByAcademicYear.findIndex(
+                (item) => item.name === academicYearName
+            );
+            if (index === -1) {
+                articlesByAcademicYear.push({
+                    name: academicYearName,
+                    count: 1,
+                });
+            } else {
+                articlesByAcademicYear[index].count++;
+            }
+        }
+        res.status(200).json({ data: articlesByAcademicYear });
+    } catch (error) {
+        console.error(
+            "Error getting total number of articles by academic year:",
+            error
+        );
+        res.status(500).json({ message: "Internal server error" });
+    }
 };
 
 // Hàm để lấy tên của năm học dựa trên ID

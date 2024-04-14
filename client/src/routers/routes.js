@@ -44,7 +44,7 @@ const Profile = lazy(() => {
     ]).then(([moduleExports]) => moduleExports);
 });
 
-const AssetCategory = lazy(() => {
+const AcademicYear = lazy(() => {
     return Promise.all([
         import("../pages/Admin/AcademicYear/academicYear"),
         new Promise((resolve) => setTimeout(resolve, 0)),
@@ -57,9 +57,6 @@ const ResetPassword = lazy(() => {
         new Promise((resolve) => setTimeout(resolve, 0)),
     ]).then(([moduleExports]) => moduleExports);
 });
-
-
-
 
 const DashBoard = lazy(() => {
     return Promise.all([
@@ -96,7 +93,7 @@ const StyledContent = styled(Content)`
         margin-left: ${(props) => (props.collapsed ? "230px" : "80px")};
     }
 
-    @media (max-width: 768px){
+    @media (max-width: 768px) {
         margin-left: ${(props) => (props.collapsed ? "100%" : "50px")};
     }
 
@@ -165,22 +162,17 @@ const RouterURL = withRouter(({ location }) => {
                                 </Suspense>
                             </PrivateRoute>
 
-                            <PrivateRoute exact path="/acdemicyear">
+                            <PrivateRoute exact path="/academicyear">
                                 <Suspense fallback={<LoadingScreen />}>
-                                    <AssetCategory />
+                                    <AcademicYear />
                                 </Suspense>
                             </PrivateRoute>
-
-                    
-
-            
 
                             <PrivateRoute exact path="/dash-board">
                                 <Suspense fallback={<LoadingScreen />}>
                                     <DashBoard />
                                 </Suspense>
                             </PrivateRoute>
-
 
                             <PrivateRoute exact path="/notfound">
                                 <NotFound />
@@ -241,10 +233,9 @@ const RouterURL = withRouter(({ location }) => {
                         <DefaultContainer />
                     </Route>
 
-                    <Route exact path="/acdemicyear">
+                    <Route exact path="/academicyear">
                         <DefaultContainer />
                     </Route>
-
 
                     <Route exact path="/dash-board">
                         <DefaultContainer />

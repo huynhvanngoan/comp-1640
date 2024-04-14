@@ -406,20 +406,28 @@ const DashBoard = () => {
                                             <h3>Chart Url Count</h3>
                                             <ResponsiveContainer
                                                 width="100%"
-                                                height={300}
+                                                height={400}
                                             >
-                                                <PieChart
-                                                    width={730}
-                                                    height={250}
-                                                >
+                                                <PieChart>
                                                     <Pie
                                                         data={urlStats}
                                                         dataKey="count"
                                                         nameKey="name"
                                                         cx="50%"
                                                         cy="50%"
-                                                        outerRadius={80}
-                                                        label
+                                                        outerRadius={150} // Tăng bán kính của Pie Chart
+                                                        label={({
+                                                            percent,
+                                                        }) => {
+                                                            if (percent !== 0) {
+                                                                // Chỉ hiển thị label cho các phần tử có phần trăm khác 0
+                                                                return `${(
+                                                                    percent *
+                                                                    100
+                                                                ).toFixed(2)}%`; // Hiển thị 2 chữ số thập phân
+                                                            }
+                                                            return null; // Không hiển thị label cho các phần tử có phần trăm là 0
+                                                        }}
                                                     >
                                                         {urlStats.map(
                                                             (entry, index) => (
@@ -446,19 +454,16 @@ const DashBoard = () => {
                                             <h3>Chart Brower Count</h3>
                                             <ResponsiveContainer
                                                 width="100%"
-                                                height={300}
+                                                height={400}
                                             >
-                                                <PieChart
-                                                    width={730}
-                                                    height={250}
-                                                >
+                                                <PieChart>
                                                     <Pie
                                                         data={browerData}
                                                         dataKey="count"
                                                         nameKey="name"
                                                         cx="50%"
                                                         cy="50%"
-                                                        outerRadius={80}
+                                                        outerRadius={150}
                                                         label
                                                     >
                                                         {browerData.map(

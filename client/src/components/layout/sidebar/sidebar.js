@@ -39,7 +39,7 @@ function Sidebar({ isSidebarCollapsed, setIsSidebarCollapsed }) {
         {
             key: "asset-list",
             title: "Academic Year",
-            link: "/acdemicyear",
+            link: "/academicyear",
             icon: <ShoppingOutlined />,
         },
         {
@@ -214,7 +214,6 @@ function Sidebar({ isSidebarCollapsed, setIsSidebarCollapsed }) {
                       ))
                     : null}
             </Menu>
-
         </Sider>
     );
 }

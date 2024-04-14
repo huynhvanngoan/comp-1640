@@ -34,6 +34,10 @@ router.get(
   articlesController.getTotalArticlesByAcademicYear
 );
 router.get(
+  "/static/totalyacademic",
+  articlesController.getTotalArticlesWithAcademicYear
+)
+router.get(
   "/static/totalbystatus/:facultyId",
   articlesController.getTotalArticlesByStatusAndFaculty
 );
