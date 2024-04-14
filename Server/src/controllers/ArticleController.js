@@ -22,6 +22,7 @@ const storage = multer.diskStorage({
 // Khởi tạo multer với cấu hình lưu trữ đã được định nghĩa
 const upload = multer({ storage: storage });
 const tempFolderPath = path.join(__dirname, "..", "..", "temp");
+
 const isAcademicYearExpired = async (academicYearId) => {
   try {
     const academicYear = await Academic.findById(academicYearId);
@@ -116,6 +117,7 @@ exports.updateArticle = async (req, res) => {
   try {
     const articleId = req.params.id;
     const updates = req.body;
+
     const article = await Article.findById(articleId);
     console.log(article);
     const isExpired = await isAcademicYearExpired(article.academicyearId);
@@ -251,6 +253,7 @@ exports.downLoadById = async (req, res) => {
     if (!article) {
       return res.status(404).json({ message: "File not found" });
     }
+
     const fileName = article.file;
     console.log(fileName);
     const filePath = path.join(
@@ -335,6 +338,7 @@ exports.downLoadAll = async (req, res) => {
   }
 };
 
+
 exports.getById = async (req, res) => {
   try {
     const articleId = req.params.id;
@@ -398,6 +402,7 @@ exports.getTotalArticlesByFaculty = async (req, res) => {
   }
 };
 
+
 exports.getTotalArticlesWithAcademicYear = async (req, res) => {
     try {
         const articles = await Article.find();
@@ -427,6 +432,32 @@ exports.getTotalArticlesWithAcademicYear = async (req, res) => {
             error
         );
         res.status(500).json({ message: "Internal server error" });
+// =======
+// exports.getTotalArticlesByAcademicYear = async (req, res) => {
+//   try {
+
+//     const { facultyId } = req.params;
+//     const users = await User.find({ facultyId });
+
+//     const userIds = users.map((user) => user._id);
+
+//     const articles = await Article.find({ userId: { $in: userIds } });
+
+//     const articlesByAcademicYear = [];
+
+//     for (const article of articles) {
+//       const academicYearId = article.academicyearId.toString();
+//       const academicYearName = await getAcademicYearNameById(academicYearId);
+//       const index = articlesByAcademicYear.findIndex(
+//         (item) => item.name === academicYearName
+//       );
+//       if (index === -1) {
+
+//         articlesByAcademicYear.push({ name: academicYearName, count: 1 });
+//       } else {
+//         articlesByAcademicYear[index].count++;
+//       }
+// >>>>>>> main
     }
 };
 
@@ -520,6 +551,7 @@ exports.getTotalArticlesByStatus = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
 exports.getTotalArticlesByStatusAndFaculty = async (req, res) => {
   try {
     const { facultyId } = req.params;

@@ -4,15 +4,29 @@
 }
 
 .card_total{
+<<<<<<< HEAD
+    flex-direction: column;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.03);
     border-radius: 5px;
     background: #fff;
+    /* Added margin bottom for spacing between cards */
+    height: 100%;
+=======
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.03);
+    border-radius: 5px;
+    background: #fff;
+>>>>>>> 5bc92b02cd422ac0a00abceaae82206f5b3b7b07
 }
 
 .card_number{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+<<<<<<< HEAD
+    padding: 20px;
+
+=======
+>>>>>>> 5bc92b02cd422ac0a00abceaae82206f5b3b7b07
 }
 
 .number_total{
@@ -34,3 +48,20 @@
     font-size: 22px;
     font-weight: 600;
 }
+<<<<<<< HEAD
+
+
+@media only screen and (max-width: 1000px) {
+    .card_total {
+        width: calc(50% - 12px);
+    }
+}
+
+
+@media only screen and (max-width: 800px) {
+    .card_total {
+        width: calc(100% - 12px);
+      }
+}
+=======
+>>>>>>> 5bc92b02cd422ac0a00abceaae82206f5b3b7b07

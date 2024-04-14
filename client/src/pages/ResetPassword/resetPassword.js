@@ -8,6 +8,7 @@ import axiosClient from '../../apis/axiosClient';
 
 const ResetPassword = () => {
 
+
     // eslint-disable-next-line no-unused-vars
     const [isLogin, setLogin] = useState(false);
 
@@ -31,6 +32,7 @@ const ResetPassword = () => {
                 }
                 else {
                     notification["success"]({
+
                         message: `Notification`,
                         description:
                             'Password uploaded successfully',
@@ -65,6 +67,7 @@ const ResetPassword = () => {
                         onFinish={onFinish}
                     >
                         <Form.Item style={{ marginBottom: 3, marginTop: 65 }}>
+
                             <Divider style={{ marginBottom: 5, fontSize: 19 }} orientation="center">COMP1640</Divider>
                         </Form.Item>
                         <Form.Item style={{ marginBottom: 16, textAlign: "center" }}>
@@ -87,11 +90,13 @@ const ResetPassword = () => {
                             rules={[
                                 {
                                     required: true,
+
                                     message: 'Enter your password!',
                                 },
                             ]}
                             hasFeedback
                         >
+
                             <Input.Password placeholder="Password" />
                         </Form.Item>
 
@@ -110,11 +115,13 @@ const ResetPassword = () => {
                                             return Promise.resolve();
                                         }
 
+
                                         return Promise.reject(new Error('Password isn`t matching!'));
                                     },
                                 }),
                             ]}
                         >
+
                             <Input.Password placeholder="Re-enter password" />
                         </Form.Item>
 

@@ -1,3 +1,4 @@
+
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import {
@@ -538,6 +539,7 @@ const ArticleManager = () => {
                             </Button>
                         )}
                         {/* <Popconfirm
+>>>>>>> 5bc92b02cd422ac0a00abceaae82206f5b3b7b07
               title="Are you sure to delete this academic?"
               onConfirm={() => handleDeleteAcademic(record._id)}
               okText="Yes"
@@ -681,6 +683,7 @@ const ArticleManager = () => {
                     </div>
                 </div>
                 {/* <Modal
+>>>>>>> 5bc92b02cd422ac0a00abceaae82206f5b3b7b07
           title="Comments Article"
           visible={openModalComment}
           style={{ top: 100 }}

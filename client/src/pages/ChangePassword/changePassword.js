@@ -3,6 +3,7 @@ import "./changePassword.css";
 import { useHistory } from "react-router-dom";
 import { Form, Input, Button, Divider, Alert, notification } from 'antd';
 import backgroundLogin from "../../assets/image/background-login.png";
+
 // import { useParams } from "react-router-dom";
 import axiosClient from '../../apis/axiosClient';
 
@@ -11,7 +12,7 @@ const ChangePassWord = () => {
     const [isLogin, setLogin] = useState(false);
 
     let history = useHistory();
-    // let { id } = useParams();
+
 
     const onFinish = async (values) => {
         const resetPassWord = {
@@ -22,6 +23,7 @@ const ChangePassWord = () => {
         axiosClient.put("/user/changePassword/" + currentUser.id, resetPassWord)
             .then(function (response) {
                 console.log(response);
+
                 if (response.message === "Current password is incorrect") {
                     return notification["error"]({
                         message: `Notification`,
@@ -35,6 +37,7 @@ const ChangePassWord = () => {
                 }
                 else {
                     notification["success"]({
+
                         message: `Notification`,
                         description:
                             'Change password successfully',
@@ -69,6 +72,7 @@ const ChangePassWord = () => {
                         onFinish={onFinish}
                     >
                         <Form.Item style={{ marginBottom: 3, marginTop: 65 }}>
+
                             <Divider style={{ marginBottom: 5, fontSize: 19 }} orientation="center">COMP1640</Divider>
                         </Form.Item>
                         <Form.Item style={{ marginBottom: 16, textAlign: "center" }}>
@@ -91,11 +95,13 @@ const ChangePassWord = () => {
                             rules={[
                                 {
                                     required: true,
+
                                     message: 'Enter old password!',
                                 },
                             ]}
                             hasFeedback
                         >
+
                             <Input.Password placeholder="Old password" />
                         </Form.Item>
 
@@ -104,6 +110,7 @@ const ChangePassWord = () => {
                             rules={[
                                 {
                                     required: true,
+
                                     message: 'Enter password!',
                                 },
                                 { max: 100, message: 'Name maximun 100 character' },
@@ -121,6 +128,7 @@ const ChangePassWord = () => {
                             rules={[
                                 {
                                     required: true,
+
                                     message: 'Re-enter password!',
                                 },
                                 ({ getFieldValue }) => ({
@@ -129,16 +137,19 @@ const ChangePassWord = () => {
                                             return Promise.resolve();
                                         }
 
+
                                         return Promise.reject(new Error('Password is not matching!'));
                                     },
                                 }),
                             ]}
                         >
+
                             <Input.Password placeholder="Re-enter password" />
                         </Form.Item>
 
                         <Form.Item style={{ width: '100%', marginTop: 20 }}>
                             <Button className="button" type="primary" htmlType="submit"  >
+
                                 OK
                             </Button>
                         </Form.Item>

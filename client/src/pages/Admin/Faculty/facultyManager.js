@@ -1,3 +1,4 @@
+
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import {
   DeleteOutlined,
@@ -22,6 +23,7 @@ import {
   Spin,
   Table,
   notification,
+
 } from "antd";
 import React, { useEffect, useState } from "react";
 import assetCategoryApi from "../../../apis/academicYearApi";
@@ -266,6 +268,7 @@ const FacultyManager = () => {
         console.log("Failed to fetch category list:" + error);
       }
     })();
+
     const userAgent = navigator.userAgent;
     const logData = async () => {
       try {

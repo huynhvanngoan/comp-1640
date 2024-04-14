@@ -1,3 +1,4 @@
+
 /* eslint-disable no-dupe-keys */
 
 import axiosClient from "./axiosClient";
@@ -57,6 +58,7 @@ const dashBoardApi = {
       throw error;
     }
   },
+
   async getTotalByAcademic(id) {
     const url = `article/static/totalbyacademic/` + id;
     try {

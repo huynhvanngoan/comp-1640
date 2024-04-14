@@ -31,6 +31,8 @@ text-align: left;
 
 .ant-menu-light .ant-menu-item-selected{
 color: white;
+<<<<<<< HEAD
+=======
 }
 /* Tablet */
 /* Tablet */
@@ -55,4 +57,5 @@ color: white;
   .ant-menu-title-content {
     display: none;
   }
+>>>>>>> 5bc92b02cd422ac0a00abceaae82206f5b3b7b07
 }

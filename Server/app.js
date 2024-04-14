@@ -9,7 +9,9 @@ const articleRouter = require("./src/routes/articlesRouter");
 const facultyRouter = require("./src/routes/facultyRouter");
 const academicRouter = require("./src/routes/academicRouter");
 const commentRouter = require("./src/routes/commentRouter");
+
 const accessRouter = require("./src/routes/accesslogRouter");
+
 // Sử dụng middleware để parse JSON request body
 app.use(express.json());
 //public
@@ -23,6 +25,7 @@ app.use("/api/article", articleRouter);
 app.use("/api/faculty", facultyRouter);
 app.use("/api/academic", academicRouter);
 app.use("/api/comment", commentRouter);
+
 app.use("/api/log", accessRouter);
 
 // Cổng mặc định là 3000

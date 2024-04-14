@@ -1,3 +1,4 @@
+
 /* eslint-disable no-unused-vars */
 import {
   CheckCircleOutlined,
@@ -34,7 +35,9 @@ import "./accountManagement.css";
 import axiosClient from "../../apis/axiosClient";
 import facultyApi from "../../apis/facultyApi";
 import academicApi from "../../apis/academicApi";
+
 import logApi from "../../apis/logApi";
+
 const { Option } = Select;
 
 const AccountManagement = () => {
@@ -131,6 +134,7 @@ const AccountManagement = () => {
           "Cannot delete the asset because it is referenced in another process or event."
         ) {
           notification["error"]({
+
             message: `Notification`,
             description:
               "Cannot be deleted because it is already in use in another event or process.",
@@ -192,6 +196,7 @@ const AccountManagement = () => {
       key: "name",
       render: (text, record) => (
         <Space size="middle">
+
           {text == null || text === undefined ? (
             ""
           ) : (
@@ -267,6 +272,7 @@ const AccountManagement = () => {
       dataIndex: "facultyId",
       key: "facultyId",
       render: (text, record) => {
+
           const faculty = faculties.find((faculty) => faculty._id === text);
           // Kiểm tra nếu vai trò là "admin" hoặc "guest" thì không hiển thị trường "Faculty"
           if (record.role === "admin" || record.role === "guest" || record.role === "department") {
@@ -294,6 +300,7 @@ const AccountManagement = () => {
       key: "actions",
       render: (text, record) => (
         <Space>
+
           {record.role !== "admin" ? (
             <>
               <Button onClick={() => handleEditUser(record._id)}>Update</Button>
@@ -355,8 +362,9 @@ const AccountManagement = () => {
       console.log(formatData);
       await axiosClient.post("/auth/create", formatData).then((response) => {
         console.log(response);
+
         if (response.status === 400) {
-          return message.error("Tài khoản đã tổn tại");
+          return message.error("Account availabel");
         } else if (
           response.message === "Validation failed: Email has already been taken"
         ) {
@@ -424,6 +432,7 @@ const AccountManagement = () => {
   useEffect(() => {
     handleList();
     window.scrollTo(0, 0);
+
     const userAgent = navigator.userAgent;
     const logData = async () => {
       try {
@@ -614,7 +623,6 @@ const AccountManagement = () => {
                 <Option value="guest">Guest</Option>
               </Select>
             </Form.Item>
-            
             <Form.Item>
               <Button
                 style={{
@@ -721,6 +729,7 @@ const AccountManagement = () => {
                 }
               >
                 <Option value="admin">Admin</Option>
+
                 <Option value="department">Manager</Option>
                 <Option value="marketing">Coordinator</Option>
                 <Option value="student">Student</Option>

@@ -1,14 +1,17 @@
+
 import React, { Suspense, lazy, useState } from "react";
 import { Layout } from "antd";
 import { withRouter } from "react-router";
 import Footer from "../components/layout/footer/footer";
 import Header from "../components/layout/header/header";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import NotFound from "../components/notFound/notFound";
 import Sidebar from "../components/layout/sidebar/sidebar";
 import LoadingScreen from "../components/loading/loadingScreen";
 import PrivateRoute from "../components/PrivateRoute";
 import PublicRoute from "../components/PublicRoute";
+
 import styled from "styled-components";
 
 const { Content } = Layout;
